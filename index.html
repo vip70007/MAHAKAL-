@@ -54,11 +54,6 @@
       z-index: 1;
       letter-spacing: 10px;
       text-shadow: 0 0 10px #660000, 0 0 20px #990000, 0 0 30px #ff0000;
-      animation: glow 1.5s infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #660000, 0 0 20px #990000, 0 0 30px #ff0000; }
-      to { text-shadow: 0 0 20px #ff0000, 0 0 30px #990000, 0 0 40px #660000; }
     }
     canvas {
       position: absolute;
@@ -89,17 +84,11 @@
         <div id="bonusText"></div>
         <canvas id="scratchCanvas"></canvas>
       </div>
-      <button id="shareBtn" style="display:none" onclick="shareOnWhatsApp()">📲 Share on WhatsApp</button>
     </div>
   </div>
 
-  <audio id="revealSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
   <script>
     const bonusText = document.getElementById("bonusText");
-    const sound = document.getElementById("revealSound");
-    const shareBtn = document.getElementById("shareBtn");
     let revealed = false;
     let claimedNumbers = JSON.parse(localStorage.getItem("claimedNumbers") || '{}');
 
@@ -176,19 +165,10 @@
         const percent = (clearPixels / (canvas.width * canvas.height)) * 100;
         if (percent > 30 && !revealed) {
           revealed = true;
-          sound.play();
-          confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
           claimedNumbers[mobile] = { numbers: bonusText.innerText, timestamp: Date.now() };
           localStorage.setItem("claimedNumbers", JSON.stringify(claimedNumbers));
-          shareBtn.style.display = "inline-block";
         }
       }
-    }
-
-    function shareOnWhatsApp() {
-      const text = `My Mahakal Lucky Numbers are: ${bonusText.innerText} 🔱 Check yours here: [YOUR_LINK_HERE]`;
-      const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
-      window.open(url, '_blank');
     }
   </script>
 </body>
