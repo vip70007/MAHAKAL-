@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lucky Numbers Scratch</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+  #scratchArea { width: 300px; height: 100px; margin: auto; background: grey; color: white; font-size: 24px; line-height: 100px; }
+</style>
+</head>
+<body>
+<h2>Enter Your Mobile Number</h2>
+<input type="text" id="mobile" placeholder="Enter mobile number">
+<button onclick="startScratch()">Submit</button>
+<div id="scratchArea">Scratch here to reveal numbers</div>
+<script>
+function startScratch() {
+    document.getElementById('scratchArea').innerHTML = '🎉 Lucky Numbers: ' + 
+        Math.floor(Math.random()*10) + ' ' +
+        Math.floor(Math.random()*10) + ' ' +
+        Math.floor(Math.random()*10);
+}
+</script>
+</body>
+</html>
